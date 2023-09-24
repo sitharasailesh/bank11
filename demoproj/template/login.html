@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        body {
+            background-image: url('https://callcia.com/wp-content/uploads/2019/08/Form-background-image-2.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+        .form-container {
+            width: 300px;
+            padding: 16px;
+            background-color: white;
+            margin: 0 auto;
+            margin-top: 100px;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+        .form-container input[type=text], .form-container input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 10px 0;
+            border: none;
+            background: #f1f1f1;
+            box-sizing: border-box;
+        }
+        .form-container button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom:10px;
+            opacity: 0.8;
+        }
+        .form-container button:hover {
+            opacity:1;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h1>Login</h1>
+    <form action="login" method="post">
+        {% csrf_token %}
+        <input type="text" placeholder="Enter username" name="username" required><br>
+        <input type="password" placeholder="Enter Password" name="password" required><br>
+        <button type="submit">Login</button><br>
+    </form>
+    <button><a href="{% url 'register' %}">Register</a></button>
+</div>
+{% for message in messages %}
+<h1>{{ message }}</h1>
+{% endfor %}
+</body>
+</html>

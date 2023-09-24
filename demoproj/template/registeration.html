@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Registeration form</title>
+	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        .form-container {
+            width: 500px;
+            padding: 16px;
+            background-color: white;
+            margin: 0 auto;
+            margin-top: 50px;
+            border-radius: 10px;
+            box-sizing: border-box; /* Add this line */
+        }
+        .form-container input[type=text], .form-container input[type=password], .form-container input[type=date], .form-container input[type=number], .form-container input[type=tel], .form-container select {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 10px 0;
+            border: none;
+            background: #f1f1f1;
+            box-sizing: border-box; /* Add this line */
+        }
+        .form-container input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom:10px;
+            opacity: 0.8;
+        }
+        .form-container input[type=submit]:hover {
+            opacity:1;
+        }
+
+    </style>
+</head>
+
+<body>
+	<center>
+		<h1 class="text-success">Application form</h1>
+        <br>
+	</center>
+	<form id="myForm" class="form-vertical" onsubmit="return validateForm()">
+
+		<form class="form-vertical">
+			<div class="form-group">
+				<div class="col-3 col-sm-12">
+				<label class="form-label">Name:</label>
+				</div>
+				<div class="col-3 col-sm-2">
+				<input class="form-input"
+					type="text"
+					placeholder="Name" required>
+				</div>
+                <div class="col-3 col-sm-12">
+				<label class="form-label">DOB</label>
+				</div>
+				<div class="col-3 col-sm-2">
+				<input class="form-input"
+					type="date"
+					placeholder="date" required>
+				</div>
+			</div>
+            <div class="col-3 col-sm-12">
+				<label class="form-label">Age</label>
+				</div>
+				<div class="col-3 col-sm-2">
+				<input class="form-input"
+					type="number"
+					placeholder="age" required>
+				</div>
+			</div>
+            <div class="col-3 col-sm-12">
+				<label class="form-label">Phone Number</label>
+				</div>
+				<div class="col-3 col-sm-2">
+				<input class="form-input"
+					type="tel"
+					placeholder="phone" required>
+				</div>
+			</div>
+
+			<div class="col-3 col-sm-12">
+				<label class="form-label">Email Id:</label>
+				</div>
+				<div class="col-3 col-sm-2">
+				<input class="form-input"
+					type="email"
+					placeholder="Email Id" required>
+				</div>
+			</div>
+			<label class="form-label">Gender:</label>
+			<label class="form-radio">
+			<input type="radio"
+					name="gender" required>
+			<i class="form-icon"></i> Male
+			</label>
+			<label class="form-radio">
+			<input type="radio"
+					name="gender">
+			<i class="form-icon"></i> Female
+			</label>
+			<div class="col-3 col-sm-12">
+				<label class="form-label">Address</label>
+				</div>
+				<div class="col-3 col-sm-2">
+				<input class="form-input"
+					type="text"
+					placeholder="address" required>
+				</div>
+			<div class="col-3 col-sm-12">
+            <label class="form-label">District</label>
+        </div>
+        <div class="col-3 col-sm-2">
+            <select id="branch" required class="form-input"></select>
+        </div>
+
+        <div class="col-3 col-sm-12">
+            <label class="form-label">Branch</label>
+        </div>
+        <div class="col-3 col-sm-2">
+            <select id="city" class="form-input"></select>
+        </div>
+            <div class="col-3 col-sm-12">
+    <label class="form-label">Materials Required:</label>
+</div>
+<div class="col-3 col-sm-2">
+    <label class="form-checkbox">
+        <input type="checkbox" name="materials" value="debit_card">
+        <i class="form-icon"></i> Debit Card
+    </label>
+    <label class="form-checkbox">
+        <input type="checkbox" name="materials" value="credit_card">
+        <i class="form-icon"></i> Credit Card
+    </label>
+    <label class="form-checkbox">
+        <input type="checkbox" name="materials" value="cheque">
+        <i class="form-icon"></i> Cheque
+    </label>
+</div>
+            <div class="col-3 col-sm-12">
+    <label class="form-label">Account Type:</label>
+</div>
+<div class="col-3 col-sm-2">
+    <select class="form-input" id="accountType" required>
+        <option value="">Select...</option>
+        <option value="savings">Savings</option>
+        <option value="current">Current</option>
+    </select>
+</div>
+
+
+
+       <br>
+
+			<button class="btn">Submit</button>   <!-- Rest of your form code here -->
+
+    </form>
+
+    <script>
+    var branchAndCity = {
+        "select district": ["select branch"],
+        "Ernakulam": ["Edappally", "Aluva", "Kakkanad"],
+        "Thrissur": ["Thriprayar", "Chalakkudy", "kodungallor"],
+        "Kottayam": ["Changanassery", "Chenganur", "Pala"],
+        "Alappuzha": ["Cherthala", "Mararikulam", "S.N.Puram"],
+<!--        "Idukki": ["Mankulam", "Munnar, "Kattapana"],-->
+<!--        // Add more branches and cities as needed-->
+    }
+
+    window.onload = function() {
+        var branchSelect = document.getElementById("branch");
+        var citySelect = document.getElementById("city");
+
+        for (var branch in branchAndCity) {
+            branchSelect.options[branchSelect.options.length] = new Option(branch, branch);
+        }
+
+        branchSelect.onchange = function() {
+            citySelect.length = 0; // Empty city select
+            var cities = branchAndCity[this.value];
+            for (var i = 0; i < cities.length; i++) {
+                citySelect.options[citySelect.options.length] = new Option(cities[i], cities[i]);
+            }
+        }
+    }
+
+    </script>
+        <script>
+    function validateForm() {
+        var form = document.getElementById('myForm');
+        for (var i = 0; i < form.elements.length; i++) {
+            if (form.elements[i].value === '' && form.elements[i].hasAttribute('required')) {
+                alert('There are some required fields!');
+                return false;
+            }
+        }
+        var r = confirm("Application accepted. Press OK to go to the home page, or Cancel to stay on this page");
+        if (r == true) {
+            window.location.href = "{% url 'home' %}";
+            return false;
+        } else {
+            return false;
+        }
+    }
+
+
+
+    </script>
+
+		</form>
+
+
+</body>
+
+</html>
